@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PlatformService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(opt =>
+opt.UseInMemoryDatabase("InMemory"));
+
+builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -19,5 +26,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+PrepDb.PrepPopulation(app);
 
 app.Run();
