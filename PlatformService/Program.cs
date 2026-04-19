@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
+using PlatformService.Dtos.Profiles;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,13 @@ opt.UseInMemoryDatabase("InMemory"));
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+builder.Services.AddAutoMapper(opt=>
+{
+    opt.AddProfile<PlatformProfile>();
+},
+typeof(Program).Assembly);
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -19,6 +27,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference(opt =>
+    {
+        opt.Title = "Platform Service API";
+        opt.Theme = ScalarTheme.DeepSpace; // تم دلخواه
+        opt.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
+    });
 }
 
 app.UseHttpsRedirection();
