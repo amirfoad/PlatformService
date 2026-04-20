@@ -23,17 +23,17 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
     app.MapOpenApi();
     app.MapScalarApiReference(opt =>
     {
         opt.Title = "Platform Service API";
-        opt.Theme = ScalarTheme.DeepSpace; // تم دلخواه
+        opt.Theme = ScalarTheme.DeepSpace; 
         opt.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
-}
+//}
 
 app.UseHttpsRedirection();
 
