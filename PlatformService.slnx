@@ -3,5 +3,6 @@
     <File Path="platforms-depl.yaml" />
     <File Path="platforms-np-srv.yaml" />
   </Folder>
+  <Project Path="CommandService/CommandService.csproj" Id="65454700-c670-4445-8f7b-e644ec6de1f3" />
   <Project Path="PlatformService/PlatformService.csproj" />
 </Solution>
