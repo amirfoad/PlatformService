@@ -18,9 +18,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+
 app.MapOpenApi();
 app.MapScalarApiReference(opt =>
 {
@@ -28,9 +26,7 @@ app.MapScalarApiReference(opt =>
     opt.Theme = ScalarTheme.Purple;
     opt.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
 });
-//}
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

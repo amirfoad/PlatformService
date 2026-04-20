@@ -14,6 +14,8 @@ builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
+Console.WriteLine($"--> CommandService Endpoint: {builder.Configuration["CommandService"]}");
+
 builder.Services.AddControllers();
 
 builder.Services.AddAutoMapper(opt=>
@@ -26,9 +28,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+
     app.MapOpenApi();
     app.MapScalarApiReference(opt =>
     {
@@ -36,9 +36,6 @@ var app = builder.Build();
         opt.Theme = ScalarTheme.DeepSpace; 
         opt.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
-//}
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
