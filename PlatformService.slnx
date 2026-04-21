@@ -2,6 +2,7 @@
   <Folder Name="/K8S/">
     <File Path="commands-depl.yaml" />
     <File Path="ingress-srv.yaml" />
+    <File Path="local-pvc.yaml" />
     <File Path="platforms-depl.yaml" />
     <File Path="platforms-np-srv.yaml" />
   </Folder>
