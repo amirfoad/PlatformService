@@ -54,7 +54,7 @@ kind: Service
 metadata:
   name: mssql-loadbalancer
 spec:
-  type: loadbalancer
+  type: LoadBalancer
   selector:
     app: mssql  
   ports:
